@@ -1,5 +1,49 @@
 .header {
   height: 10vh;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   background: linear-gradient(#284B63 0%, #3C6E71 100%);
+
+  h1, a {
+    color: white;
+  }
+
+  h1 {
+    margin-left: 15px;
+  }
+
+  nav {
+    width: 30vw;
+
+    display: flex;
+    justify-content: space-around;
+
+    a {
+      font-weight: 200;
+
+      &:hover {
+        color: #D9D9D9;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .header nav {
+    width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    flex-flow: column;
+    justify-content: space-around;
+
+    nav {
+      width: 100vw;
+    }
+  }
 }

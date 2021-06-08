@@ -1,3 +1,5 @@
+import {Switch, Route} from 'react-router-dom';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/main/Home';
@@ -12,11 +14,15 @@ function App() {
   return (
     <div className={styles.app}>
       <Header/>
-      <Home/>
-      {/*<Add/>*/}
-      {/*<Delete/>*/}
-      {/*<Update/>*/}
-      {/*<Get/>*/}
+
+      <Switch>
+        <Route path='/add' component={Add}/>
+        <Route path='/get' component={Get}/>
+        <Route path='/update' component={Update}/>
+        <Route path='/delete' component={Delete}/>
+        <Route path='/' component={Home}/>
+      </Switch>
+
       <Footer/>
     </div>
   );
