@@ -1,5 +1,5 @@
 .header {
-  height: 10vh;
+  min-height: 10vh;
 
   display: flex;
   align-items: center;
@@ -7,7 +7,7 @@
 
   background: linear-gradient(#284B63 0%, #3C6E71 100%);
 
-  h1, a {
+  a {
     color: white;
   }
 
