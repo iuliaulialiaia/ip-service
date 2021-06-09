@@ -1,12 +1,12 @@
 import {Link} from 'react-router-dom';
 
-import mainStyles from '../../styles/Main.module.scss';
+import mainStyles from '../../styles/main/Main.module.scss';
 import homeStyles from '../../styles/main/Home.module.scss';
 
 function Home(props) {
   return (
     <div className={mainStyles.main + ' ' + homeStyles.home}>
-      <div className={homeStyles.text}>
+      <div className={mainStyles.text}>
         <h1>IP Service</h1>
         <p>An easy way to find if an IP belongs to Amazon Web Services, Azure or Google Cloud Platform</p>
       </div>

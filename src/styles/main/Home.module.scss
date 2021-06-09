@@ -1,23 +1,4 @@
 .home {
-  * {
-    color: #353535;
-  }
-
-  .text {
-    min-height: 15vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h1, p {
-      margin-bottom: 10px;
-      font-weight: 100;
-      text-align: center;
-    }
-  }
-
   div:nth-child(2):not(.services div) {
     min-height: 40vh;
     position: relative;
@@ -90,14 +71,8 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .home {
-    .text {
-      background-color: white;
-    }
-
-    div:nth-child(2):not(.services div) {
-      position: static;
-    }
+  .home div:nth-child(2):not(.services div) {
+    position: static;
   }
 
   .services {

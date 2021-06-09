@@ -1,0 +1,22 @@
+.main {
+  min-height: 80vh;
+
+  * {
+    color: #353535;
+  }
+
+  .text {
+    min-height: 15vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1, p {
+      margin-bottom: 10px;
+      font-weight: 100;
+      text-align: center;
+    }
+  }
+}
