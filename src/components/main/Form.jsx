@@ -5,11 +5,12 @@ import {faCheck, faRecycle, faTimes} from '@fortawesome/free-solid-svg-icons';
 
 import validate from '../../utils/validator';
 import {API} from '../../settings';
+import Text from './Text';
 import {InputWrapper, InfoMessage, SuccessMessage, ErrorMessage} from '../../styles/main/form';
 import mainStyles from '../../styles/main/Main.module.scss';
 import formStyles from '../../styles/main/Form.module.scss';
 
-function Get(props) {
+function Form(props) {
   const [ip, setIp] = useState(['', '', '', '']);
   const [errors, setErrors] = useState([]);
 
@@ -43,9 +44,34 @@ function Get(props) {
 
     setInfo('Please wait...');
 
-    axios.get(API + '?ip=' + ip.join('.'))
-      .then(response => setSuccess(response.data.data.company))
-      .catch(error => setError(error));
+    let stringIp = ip.join('.');
+    const data = {
+      ip: stringIp
+    };
+    switch (props.action) {
+      case 'add':
+        axios.post(API, data)
+          .then(response => setSuccess(response.data.data.message))
+          .catch(error => setError(error));
+        break;
+      case 'get':
+        axios.get(API + '?ip=' + stringIp)
+          .then(response => setSuccess(response.data.data.company))
+          .catch(error => setError(error));
+        break;
+      case 'update':
+        axios.put(API, data)
+          .then(response => setSuccess(response.data.data.message))
+          .catch(error => setError(error));
+        break;
+      case 'delete':
+        axios.delete(API + '?ip=' + stringIp)
+          .then(response => setSuccess(response.data.data.message))
+          .catch(error => setError(error));
+        break;
+      default:
+        break;
+    }
   }
 
   useEffect(() => {
@@ -81,10 +107,7 @@ function Get(props) {
 
   return (
     <div className={mainStyles.main}>
-      <div className={mainStyles.text}>
-        <h1>Get an IP address</h1>
-        <p>Querying the service with an IP will indicate if the IP belongs to one of three cloud service providers: Amazon Web Services, Google Cloud Platform, Azure</p>
-      </div>
+      <Text action={props.action}/>
 
       <form className={formStyles.form}>
         <div>
@@ -92,6 +115,7 @@ function Get(props) {
             <InputWrapper
               key={index}
               type='text'
+              value={number}
               onChange={onChangeIp(index)}
               error={errors[index]}
             />
@@ -111,10 +135,12 @@ function Get(props) {
           <p>{error}</p>
         </ErrorMessage>
 
-        <button type='submit' onClick={submit}>send</button>
+        <button type='submit' onClick={submit}>
+          {props.action}
+        </button>
       </form>
     </div>
   );
 }
 
-export default Get;
+export default Form;
